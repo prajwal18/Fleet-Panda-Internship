@@ -14,75 +14,62 @@ get the following result:
 
 my_list = [1,2,"Hello", "ABCDE", true, 2, false, "Hello again", 2.4, 4.6, "What up", "Halo", "I see fire, ed sheeran"]
 
+def integer_list()
+    @integer_list ||= []
+end
+
+def float_list()
+    @float_list ||= []
+end
+
+def string_list()
+    @string_list ||= []
+end
+
+def boolean_list()
+    @boolean_list ||= []
+end
+
 
 # 1
-def getVariableTypeCountOfAList(my_list)
-    int_count = 0
-    float_count = 0
-    str_count = 0
-    bool_count = 0
-    
-    last_index = my_list.length - 1
-    
-    for i in (0..last_index)
-        my_var = my_list[i]
-        if my_var.is_a?(String)
-            str_count += 1
-        elsif my_var.is_a?(Integer)
-            int_count += 1
-        elsif my_var.is_a?(Float)
-            float_count += 1
-        elsif !!my_var == my_var # Boolean case
-            bool_count += 1   
+def printVariableTypeCountOfAList(my_list)
+    for item in (my_list)
+        if item.is_a?(String)
+            string_list.append(item)
+        elsif item.is_a?(Integer)
+            integer_list.append(item)
+        elsif item.is_a?(Float)
+            float_list.append(item)
+        elsif !!item == item # Boolean case
+            boolean_list.append(item)
         end
     end
     
-    puts "Integer count #{int_count}"
-    puts "Float count #{float_count}"
-    puts "String count #{str_count}"
-    puts "Boolean count #{bool_count}"
+    puts "Integer count #{integer_list.length}"
+    puts "Float count #{float_list.length}"
+    puts "String count #{string_list.length}"
+    puts "Boolean count #{boolean_list.length}"
 end
 
-# 2
-def getSumOfAllIntegerInAList(my_list)
-    last_index = my_list.length - 1
-    int_sum = 0
-    for i in (0..last_index) 
-        if my_list[i].is_a?(Integer)
-            int_sum += my_list[i]
-        end
-    end
-    puts "Sum of all the integers: #{int_sum}"
+# 2 Note: this will only work if the function getVariableTypeCountOfAList is executed prior. (Assigns the integer_list variable some value)
+def getSumOfAllIntegerInAList()
+    return integer_list.sum
 end
 
-# 3
-def getSumOfAllFloatInAList(my_list)
-    last_index = my_list.length - 1
-    float_sum = 0.0
-    for i in (0..last_index) 
-        if my_list[i].is_a?(Float)
-            float_sum += my_list[i]
-        end
-    end
-    puts "Sum of all the float: #{float_sum}"
+# 3 Note: this will only work if the function getVariableTypeCountOfAList is executed prior. (Assigns the float_list variable some value)
+def getSumOfAllFloatInAList()
+    return float_list.sum
 end
 
-# 4
-def getAverageOfAllFloatInAList(my_list)
-    last_index = my_list.length - 1
-    float_sum = 0
-    float_count = 0
-    for i in (0..last_index) 
-        if my_list[i].is_a?(Float)
-            float_sum += my_list[i]
-            float_count += 1
-        end
-    end
-    puts "Average of all the float: #{float_sum/float_count}"
+# 4: Note: this will only work if the function getVariableTypeCountOfAList is executed prior. (Assigns the float_list variable some value) 
+def getAverageOfAllFloatInAList()
+    float_sum = getSumOfAllFloatInAList()
+    float_count = float_list.length
+    return float_sum/float_count
 end
 
 # 5
-def getAllPrimeNumberLessThanEqualTo(num)
+def printAllPrimeNumberLessThanEqualTo(num)
     primes = []
 
     if num <= 2
@@ -102,52 +89,42 @@ def getAllPrimeNumberLessThanEqualTo(num)
             primes.append(i)
         end
     end
-    print primes
+    print "All primes <= #{num}: #{primes}"
 end
 
-# 6
-def getTheLongestString(my_list)
-    last_index = my_list.length - 1
-    longest_str = "";
-    for i in (0..last_index) 
-        if my_list[i].is_a?(String)
-            if longest_str.length < my_list[i].length
-                longest_str = my_list[i]
-            end
-        end
-    end
-    puts "The longest String is: #{longest_str} \nWith a length of: #{longest_str.length}"
-end
-
-# 7
-def groupStringByLength(my_list)
-    last_index = my_list.length - 1
+# 7 Note: this will only work if the function getVariableTypeCountOfAList is executed first. (Assigns the string_list variable some value)
+def getStringsGrouppedByLength()
     stringGroupedByLength = Hash.new()
-    for i in (0..last_index)
-        if my_list[i].is_a?(String)
-            string_length = my_list[i].length
+    for item in string_list
+            string_length = item.length
             if stringGroupedByLength.key?(string_length)
-                stringGroupedByLength[string_length].append(my_list[i])
+                stringGroupedByLength[string_length].append(item)
             elsif
-                stringGroupedByLength[string_length] = [my_list[i]]
-            end            
-        end
+                stringGroupedByLength[string_length] = [item]
+            end
     end
-    print stringGroupedByLength
+    return stringGroupedByLength
+end
+
+# 6 Returns the first longest string if there are more than one with the same max length.
+def getTheLongestString()
+    stringGroupedByLength = getStringsGrouppedByLength()
+    largestStringLen = stringGroupedByLength.keys.max
+    return stringGroupedByLength[largestStringLen][0]
 end
 
 
 
-getVariableTypeCountOfAList(my_list)
+printVariableTypeCountOfAList(my_list)
 print "\n\n"
-getSumOfAllIntegerInAList(my_list)
+print "Sum of all integers in a list: #{getSumOfAllIntegerInAList()}"
 print "\n\n"
-getSumOfAllFloatInAList(my_list)
+print "Sum of all floats in a list: #{getSumOfAllFloatInAList()}"
 print "\n\n"
-getAverageOfAllFloatInAList(my_list)
+print "Average of all floats in a list: #{getAverageOfAllFloatInAList()}"
 print "\n\n"
-getTheLongestString(my_list)
+print "The longest string in a list: #{getTheLongestString()}"
 print "\n\n"
-groupStringByLength(my_list)
+print "String grouped by length: #{getStringsGrouppedByLength()}"
 print "\n\n"
-getAllPrimeNumberLessThanEqualTo(33)
+printAllPrimeNumberLessThanEqualTo(33)
