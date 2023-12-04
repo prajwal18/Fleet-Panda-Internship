@@ -34,13 +34,14 @@ end
 # 1
 def printVariableTypeCountOfAList(my_list)
     for item in (my_list)
-        if item.is_a?(String)
+         case item
+         when String
             string_list.append(item)
-        elsif item.is_a?(Integer)
+         when Integer
             integer_list.append(item)
-        elsif item.is_a?(Float)
+         when Float
             float_list.append(item)
-        elsif !!item == item # Boolean case
+         when !!item == item # Boolean case
             boolean_list.append(item)
         end
     end
