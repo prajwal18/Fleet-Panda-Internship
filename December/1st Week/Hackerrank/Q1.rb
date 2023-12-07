@@ -5,12 +5,12 @@
     determine how many pairs of socks with matching colors there are.
 =end
 
-def sockMerchant(n, ar)
+def sockMerchant(arr)
     # Write your code here
     sock_count_by_color = Hash.new(0)
     total_pairs = 0
     # First step create a hash map with sock color as key its count as the value
-    ar.each { |color| sock_count_by_color[color] += 1 }
+    arr.each { |color| sock_count_by_color[color] += 1 }
     
     # now counting how many pairs are there in total
     sock_count_by_color.each do |color, count|

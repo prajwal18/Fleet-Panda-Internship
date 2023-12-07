@@ -12,8 +12,7 @@
 
 =end
 
-
-def countingValleys(steps, path)
+def countingValleys(path)
     # Write your code here
     valley_count = 0
     altitude = 0

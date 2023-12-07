@@ -18,7 +18,7 @@ No one disputes the fact that test are important. The real question is whether t
 * Test works as documentation. If you are unsure about a class or library you can check out its corresponding tests to find clarity based on the assertions made in the test.
 
 ## What is Red-Green-Refactor cycle ?
-It's a process that is followed in TDD where development is carried  out in small cycles. In each cycle, test cases are written agains a requirement. Then code is written that fulfilles the requirement, its tested, and finally after the code passes the test it's refactored and retested.
+It's a process that is followed in TDD where development is carried  out in small cycles. In each cycle, test cases are written against a requirement. Then code is written that fulfilles the requirement, its tested, and finally after the code passes the test it's refactored and retested.
 
 ## What is the difference between unit and integration tests ?   
 Once you've got a test passing, it's then safe to refactor it, secure in the knowledge that the test cases will have your back. This puts you in a better position to refactor, as you'll be confident that you won't break anything.
