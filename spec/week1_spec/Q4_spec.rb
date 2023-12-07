@@ -7,7 +7,7 @@ describe 'repeatedString' do
     expect(repeatedString(string, 100)).to eql(60)
   end
 
-  it "should return 0 when the string from which the substring to be created is contains no a's" do
+  it "should return 0 when the string from which the substring is to be created contains no a's" do
     string = 'ko'
     expect(repeatedString(string, 100)).to eql(0)
   end
