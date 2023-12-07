@@ -8,8 +8,8 @@ describe 'jumpingOnClouds' do
   end
 
   it 'should return 0 when an empty array is supplied' do
-    game_seq = [0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
-    expect(jumpingOnClouds(game_seq)).to eql(10)
+    game_seq = []
+    expect(jumpingOnClouds(game_seq)).to eql(0)
   end
 
   it 'should raise NoMethodError error when a boolean is provided instead of an array of integers' do
