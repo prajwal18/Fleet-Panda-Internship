@@ -17,11 +17,9 @@ describe TodoList do
     it "should not add a task that's already in the list" do
       task = 'Prepare Breakfast'
 
-      todo_size = todo_list.todos.length
-
-      todo_list.add_task(task)
-
-      expect(todo_list.todos.length).to eql(todo_size)
+      expect do
+        todo_list.add_task(task)
+      end.to output("Sorry, cannot add duplicate task.\n").to_stdout
     end
 
     it 'should fail to add any value other than a string into the todo list' do

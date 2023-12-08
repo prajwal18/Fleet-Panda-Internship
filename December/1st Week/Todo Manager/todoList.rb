@@ -13,10 +13,12 @@ class TodoList
 
   def add_task(task)
     tasks = get_tasks
-    return unless (task.is_a? String) && !(tasks.include? task)
-
-    new_task = Task.new(task, false)
-    @todos.push(new_task)
+    if (task.is_a? String) && !(tasks.include? task)
+      new_task = Task.new(task, false)
+      @todos.push(new_task)
+    else
+      puts "Sorry, cannot add duplicate task."
+    end
   end
 
   def complete_task(index)
